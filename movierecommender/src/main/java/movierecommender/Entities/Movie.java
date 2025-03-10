@@ -49,7 +49,23 @@ public class Movie {
     @Override
     public String toString() {
         StringBuilder movie = new StringBuilder(
-                "movieID: " + movieID + "\nmovieName: " + movieName + "\ngeneres: \n" + String.join(", ", this.genres));
+                "movieID: " + movieID + "\nmovieName: " + movieName + "\ngeneres:" + String.join(", ", this.genres));
         return movie.toString();
+    }
+
+    public String getLettersInID() {
+        StringBuilder letters = new StringBuilder();
+        for (char c : this.movieID.toCharArray())
+            if (Character.isAlphabetic(c))
+                letters.append(c);
+        return letters.toString();
+    }
+
+    public String getNumsInID() {
+        StringBuilder nums = new StringBuilder();
+        for (char c : this.movieID.toCharArray())
+            if (Character.isDigit(c))
+                nums.append(c);
+        return nums.toString();
     }
 }
