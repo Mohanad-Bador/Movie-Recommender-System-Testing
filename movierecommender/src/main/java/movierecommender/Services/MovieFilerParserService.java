@@ -29,20 +29,23 @@ public class MovieFilerParserService implements IMovieFileParser {
             List<String> lines = Files.readAllLines(Paths.get(filename));
             for (int i = 0; i < lines.size(); i += 2) {
                 String[] splitted = lines.get(i).split(",");
+                if (splitted.length <= 1) {
+                    throw new AppError("There were no commas");
+                }
                 String name = splitted[0].trim();
                 if (!isValidMovieName(name))
                     throw new AppError("Movie Title \"" + name + "\" is wrong");
                 String id = splitted[1].trim();
-                if (!isValidID(id))
+                if (!isValidMovieID(id))
                     throw new AppError("Movie id letters \"" + id + "\" are wrong");
                 String[] generesArray = lines.get(i + 1).split(",");
                 Set<String> generes = new HashSet<>(Arrays.asList(generesArray));
                 Movie movie = new Movie(name, id, generes);
+                if (movies.containsKey(movie.getMovieID())) {
+                    throw new AppError("Duplicated Movie ID \"" + id + "\"");
+                }
                 movies.put(id, movie);
             }
-            movies.forEach((key, value) -> {
-                System.out.println(value.toString() + "\n");
-            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +54,7 @@ public class MovieFilerParserService implements IMovieFileParser {
         return movies;
     }
 
-    public boolean isValidMovieName(String movieName) {
+    public static boolean isValidMovieName(String movieName) {
         String[] movieNameList = movieName.split(" ");
         for (String name : movieNameList)
             if (Character.isLowerCase(name.charAt(0)))
@@ -59,20 +62,18 @@ public class MovieFilerParserService implements IMovieFileParser {
         return true;
     }
 
-    public boolean isValidID(String id) {
+    public static boolean isValidMovieID(String id) {
         // capital charcters
         // T3TR3 & 3 int
         // Unique numbers????
-        boolean firstDigit = false;
         int numSize = 3;
         for (char c : id.toCharArray()) {
             if (Character.isLowerCase(c))
                 return false;
             if (Character.isDigit(c)) {
-                firstDigit = true;
                 numSize -= 1;
             }
-            if (numSize < 0 || (firstDigit && Character.isAlphabetic(c)))
+            if (numSize < 0)
                 return false;
         }
         return true;

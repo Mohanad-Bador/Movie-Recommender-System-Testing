@@ -1,21 +1,21 @@
 package movierecommender.Entities;
 
 // import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Set;
 
 public class User {
     private String userID;
     private String username;
-    private HashMap<String, Movie> favoriteMoviesDict;
+    private Set<String> favoriteMoviesSet;
 
     public User() {
 
     }
 
-    public User(String userID, String username, HashMap<String, Movie> favoriteMoviesDict) {
+    public User(String userID, String username, Set<String> favoriteMoviesSet) {
         this.userID = userID;
         this.username = username;
-        this.favoriteMoviesDict = favoriteMoviesDict;
+        this.favoriteMoviesSet = favoriteMoviesSet;
     }
 
     public void setuserID(String userID) {
@@ -26,8 +26,8 @@ public class User {
         this.username = username;
     }
 
-    public void SetfavoriteMoviesDict(HashMap<String, Movie> favoriteMoviesDict) {
-        this.favoriteMoviesDict = favoriteMoviesDict;
+    public void SetfavoriteMoviesSet(Set<String> favoriteMoviesSet) {
+        this.favoriteMoviesSet = favoriteMoviesSet;
     }
 
     public String getuserID() {
@@ -38,16 +38,16 @@ public class User {
         return this.username;
     }
 
-    public HashMap<String, Movie> getfavoriteMoviesDict() {
-        return this.favoriteMoviesDict;
+    public Set<String> getfavoriteMoviesSet() {
+        return this.favoriteMoviesSet;
     }
 
     @Override
     public String toString() {
         StringBuilder user = new StringBuilder(
                 "userID: " + userID + "\nUserName: " + username + "\nfavoriteMovies: \n");
-        this.favoriteMoviesDict.forEach((key, value) -> {
-            user.append(value.getMovieName() + ", ");
+        this.favoriteMoviesSet.forEach((MovieID) -> {
+            user.append(MovieID + ", ");
         });
         return user.toString();
     }
