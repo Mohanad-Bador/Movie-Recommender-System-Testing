@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 import movierecommender.Contracts.IUserFileParser;
-import movierecommender.Entities.Movie;
 import movierecommender.Entities.User;
 import movierecommender.Errors.AppError;
 import movierecommender.Helpers.UserValidator;
@@ -38,6 +37,9 @@ public class UserFileParserService implements IUserFileParser {
 
                 // !3) Constructing User object
                 String[] movieIDArray = lines.get(i + 1).split(",");
+                for(int j =0;j<movieIDArray.length;j++)
+                    movieIDArray[j] = movieIDArray[j].trim();
+                    
                 Set<String> IDs = new HashSet<>(Arrays.asList(movieIDArray));
                 User user = new User(id, name, IDs);
 

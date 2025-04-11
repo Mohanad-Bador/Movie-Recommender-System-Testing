@@ -1,8 +1,8 @@
 package movierecommender.Mock;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 import movierecommender.Contracts.IUserFileParser;
 import movierecommender.Entities.Movie;
@@ -17,14 +17,14 @@ public class UserFileParserMock implements IUserFileParser {
     public static final int SCENARIO_NO_MATCHING_GENRES = 3;
     
     private int scenario;
-    private HashMap<String, Movie> availableMovies;
+    private HashMap<String,Movie> availableMovies;
     
-    public UserFileParserMock(HashMap<String, Movie> availableMovies) {
+    public UserFileParserMock(HashMap<String,Movie> availableMovies) {
         this.scenario = SCENARIO_WITH_FAVORITES;
         this.availableMovies = availableMovies;
     }
     
-    public UserFileParserMock(int scenario, HashMap<String, Movie> availableMovies) {
+    public UserFileParserMock(int scenario,HashMap<String,Movie> availableMovies) {
         this.scenario = scenario;
         this.availableMovies = availableMovies;
     }
@@ -46,8 +46,8 @@ public class UserFileParserMock implements IUserFileParser {
     
     public HashMap<String, User> createUsersWithNoFavorites() {
         HashMap<String, User> users = new HashMap<>();
-        users.put("1", new User("1", "User With No Favorites", new HashMap<>()));
-        users.put("2", new User("2", "Another User With No Favorites", new HashMap<>()));
+        users.put("1", new User("1", "User With No Favorites", new HashSet<>()));
+        users.put("2", new User("2", "Another User With No Favorites", new HashSet<>()));
         return users;
     }
     
@@ -55,32 +55,34 @@ public class UserFileParserMock implements IUserFileParser {
         HashMap<String, User> users = new HashMap<>();
         
         // User with 1 favorite movie
-        HashMap<String, Movie> user1Favorites = new HashMap<>();
-        if (availableMovies.containsKey("Movie1")) {
-            user1Favorites.put("Movie1", availableMovies.get("Movie1"));
+        Set<String> user1Favorites = new HashSet<>();
+        //, availableMovies.get("Movie1")
+        if (availableMovies.containsKey("1")) {
+            user1Favorites.add("1");
         }
+
         users.put("1", new User("1", "User With One Favorite", user1Favorites));
         
         // User with 2 favorite movies
-        HashMap<String, Movie> user2Favorites = new HashMap<>();
-        if (availableMovies.containsKey("Movie1")) {
-            user2Favorites.put("Movie1", availableMovies.get("Movie1"));
+        Set<String> user2Favorites = new HashSet<>();
+        if (availableMovies.containsKey("1")) {
+            user2Favorites.add("1");
         }
-        if (availableMovies.containsKey("Movie2")) {
-            user2Favorites.put("Movie2", availableMovies.get("Movie2"));
+        if (availableMovies.containsKey("2")) {
+            user2Favorites.add("2");
         }
         users.put("2", new User("2", "User With Two Favorites", user2Favorites));
         
         // User with 3 favorite movies
-        HashMap<String, Movie> user3Favorites = new HashMap<>();
-        if (availableMovies.containsKey("Movie1")) {
-            user3Favorites.put("Movie1", availableMovies.get("Movie1"));
+        Set<String> user3Favorites = new HashSet<>();
+        if (availableMovies.containsKey("1")) {
+            user3Favorites.add("1");
         }
-        if (availableMovies.containsKey("Movie2")) {
-            user3Favorites.put("Movie2", availableMovies.get("Movie2"));
+        if (availableMovies.containsKey("2")) {
+            user3Favorites.add("2");
         }
-        if (availableMovies.containsKey("Movie3")) {
-            user3Favorites.put("Movie3", availableMovies.get("Movie3"));
+        if (availableMovies.containsKey("3")) {
+            user3Favorites.add("3");
         }
         users.put("3", new User("3", "User With Three Favorites", user3Favorites));
         
@@ -89,7 +91,7 @@ public class UserFileParserMock implements IUserFileParser {
     
     public HashMap<String, User> createUsersWithAllFavorites() {
         HashMap<String, User> users = new HashMap<>();
-        users.put("1", new User("1", "User With All Favorites", new HashMap<>(availableMovies)));
+        users.put("1", new User("1", "User With All Favorites", new HashSet<>(availableMovies.keySet())));
         
         return users;
     }
@@ -98,27 +100,21 @@ public class UserFileParserMock implements IUserFileParser {
         HashMap<String, User> users = new HashMap<>();
         
         // User with 1 non-matching genre movie
-        HashMap<String, Movie> user1Favorites = new HashMap<>();
-        user1Favorites.put("DifferentGenre1", new Movie("DifferentGenre1", "991", 
-            new HashSet<>(Arrays.asList("Western"))));
+        HashSet<String> user1Favorites = new HashSet<>();
+        user1Favorites.add("1");
         users.put("1", new User("1", "User With One Non-Matching Genre", user1Favorites));
         
         // User with 2 non-matching genre movies
-        HashMap<String, Movie> user2Favorites = new HashMap<>();
-        user2Favorites.put("DifferentGenre1", new Movie("DifferentGenre1", "991", 
-            new HashSet<>(Arrays.asList("Western"))));
-        user2Favorites.put("DifferentGenre2", new Movie("DifferentGenre2", "992", 
-            new HashSet<>(Arrays.asList("Musical"))));
+        HashSet<String> user2Favorites = new HashSet<>();
+        user2Favorites.add("1");
+        user2Favorites.add("2");
         users.put("2", new User("2", "User With Two Non-Matching Genres", user2Favorites));
         
         // User with 3 non-matching genre movies
-        HashMap<String, Movie> user3Favorites = new HashMap<>();
-        user3Favorites.put("DifferentGenre1", new Movie("DifferentGenre1", "991", 
-            new HashSet<>(Arrays.asList("Western"))));
-        user3Favorites.put("DifferentGenre2", new Movie("DifferentGenre2", "992", 
-            new HashSet<>(Arrays.asList("Musical"))));
-        user3Favorites.put("DifferentGenre3", new Movie("DifferentGenre3", "993", 
-            new HashSet<>(Arrays.asList("Documentary"))));
+        HashSet<String> user3Favorites = new HashSet<>();
+        user3Favorites.add("1");
+        user3Favorites.add("2");
+        user3Favorites.add("3");
         users.put("3", new User("3", "User With Three Non-Matching Genres", user3Favorites));
         
         return users;

@@ -46,6 +46,10 @@ public class MovieFilerParserService implements IMovieFileParser {
 
                 // ! 3) Construct Movie object
                 String[] generesArray = lines.get(i + 1).split(",");
+
+                for(int j =0;j<generesArray.length;j++)
+                    generesArray[j] = generesArray[j].trim();
+
                 Set<String> generes = new HashSet<>(Arrays.asList(generesArray));
                 Movie movie = new Movie(name, id, generes);
 

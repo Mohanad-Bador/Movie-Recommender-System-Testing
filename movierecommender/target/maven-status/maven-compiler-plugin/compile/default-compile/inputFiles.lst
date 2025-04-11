@@ -7,6 +7,9 @@ C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecomme
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Entities\Recommendation.java
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Entities\User.java
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Errors\AppError.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Helpers\BaseValidator.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Helpers\MovieValidator.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Helpers\UserValidator.java
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Main.java
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Mock\MovieFileParserMock.java
 C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Mock\UserFileParserMock.java

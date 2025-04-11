@@ -29,8 +29,10 @@ public class RecommenderServiceTest {
         // Arrange
         MovieFileParserMock movieFileParserMock = new MovieFileParserMock();
         HashMap<String, Movie> movies = movieFileParserMock.parseMovies("movies.txt");
+
         UserFileParserMock userFileParserMock = new UserFileParserMock(UserFileParserMock.SCENARIO_NO_FAVORITES, movies);
         HashMap<String, User> users = userFileParserMock.parseUsers("users.txt");
+
         RecommenderService recommenderService = new RecommenderService();
 
         // Act
@@ -44,10 +46,12 @@ public class RecommenderServiceTest {
     @Test
     public void RecommenderServiceTest_FavouriteMoviesWithNoMatchingGenres_NoRecommendations() {       
         // Arrange
-        MovieFileParserMock movieFileParserMock = new MovieFileParserMock();
+        MovieFileParserMock movieFileParserMock = new MovieFileParserMock(MovieFileParserMock.SCENARIO_DIFFERENT_GENRE_MOVIES);
         HashMap<String, Movie> movies = movieFileParserMock.parseMovies("movies.txt");
+
         UserFileParserMock userFileParserMock = new UserFileParserMock(UserFileParserMock.SCENARIO_NO_MATCHING_GENRES, movies);
         HashMap<String, User> users = userFileParserMock.parseUsers("users.txt");
+
         RecommenderService recommenderService = new RecommenderService();
 
         // Act
@@ -158,7 +162,7 @@ public class RecommenderServiceTest {
         // Act
         for (User user : users.values()) {
             // Assert
-            int userMoviesCount = user.getfavoriteMoviesDict().size();
+            int userMoviesCount = user.getfavoriteMoviesSet().size();
             assertEquals(movies.size() - userMoviesCount, recommenderService.generateRecommendations(user, movies).getRecommendedMovies().size());
             }
         }

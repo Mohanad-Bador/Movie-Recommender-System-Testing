@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="Services.RecommenderServiceTest" time="0.07" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="Services.RecommendationFileWriterServiceTest" time="0.767" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,9 +15,9 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\Mohanad\.vscode\extensions\oracle.oracle-java-23.1.0\out\webviews\jdkDownloader\jdk_downloads\jdk-23.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Mohanad\AppData\Local\Temp\surefire14775121989598056546\surefirebooter-20250412012256724_3.jar C:\Users\Mohanad\AppData\Local\Temp\surefire14775121989598056546 2025-04-12T01-22-56_371-jvmRun1 surefire-20250412012256724_1tmp surefire_0-20250412012256724_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Mohanad\AppData\Local\Temp\surefire3755938321627043214\surefirebooter-20250412012332277_3.jar C:\Users\Mohanad\AppData\Local\Temp\surefire3755938321627043214 2025-04-12T01-23-32_004-jvmRun1 surefire-20250412012332277_1tmp surefire_0-20250412012332277_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="Services.RecommenderServiceTest"/>
+    <property name="test" value="Services.RecommendationFileWriterServiceTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\target\test-classes;C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\target\classes;C:\Users\Mohanad\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\Mohanad\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Mohanad\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\Mohanad\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Mohanad\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\Mohanad\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\Mohanad\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\Mohanad\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\Mohanad\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\Mohanad\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\Mohanad\.m2\repository\org\mockito\mockito-junit-jupiter\4.3.1\mockito-junit-jupiter-4.3.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Mohanad"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Mohanad\AppData\Local\Temp\surefire14775121989598056546\surefirebooter-20250412012256724_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Mohanad\AppData\Local\Temp\surefire3755938321627043214\surefirebooter-20250412012332277_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.2+7-58"/>
@@ -60,12 +60,19 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="RecommenderServiceTest_FavouriteMoviesWithNoMatchingGenres_NoRecommendations" classname="Services.RecommenderServiceTest" time="0.028"/>
-  <testcase name="RecommenderServiceTest_FavouriteMoviesWithMatchingGenres_Recommendations" classname="Services.RecommenderServiceTest" time="0.004"/>
-  <testcase name="RecommenderServiceTest_UserHasAllMoviesOfFavaoriteGenre_NoRecommendations" classname="Services.RecommenderServiceTest" time="0.0"/>
-  <testcase name="RecommenderServiceTest_NoFavouriteMovies_NoRecommendations" classname="Services.RecommenderServiceTest" time="0.0"/>
-  <testcase name="RecommenderServiceTest_NoAvailableUser_ThrowNoAvailableUsers" classname="Services.RecommenderServiceTest" time="0.002"/>
-  <testcase name="RecommenderServiceTest_AllMoviesOfTheSameGenre_Recommendations" classname="Services.RecommenderServiceTest" time="0.0"/>
-  <testcase name="RecommenderServiceTest_NoAvailableMovies_ThrowNoAvailableMovies" classname="Services.RecommenderServiceTest" time="0.002"/>
-  <testcase name="RecommenderServiceTest_UserLovesAllMovies_NoRecommendations" classname="Services.RecommenderServiceTest" time="0.0"/>
+  <testcase name="RecommendationFileWriterService_OneUser_SuccessfulWrite" classname="Services.RecommendationFileWriterServiceTest" time="0.679">
+    <system-out><![CDATA[Successfully wrote to the file.
+]]></system-out>
+  </testcase>
+  <testcase name="RecommendationFileWriterService_NoRecommendations_Exception" classname="Services.RecommendationFileWriterServiceTest" time="0.027"/>
+  <testcase name="RecommendationFileWriterService_NoFilenameSpecified_IOException" classname="Services.RecommendationFileWriterServiceTest" time="0.006"/>
+  <testcase name="RecommendationFileWriterService_MultiUser_SuccessfulWrite" classname="Services.RecommendationFileWriterServiceTest" time="0.004">
+    <system-out><![CDATA[Successfully wrote to the file.
+]]></system-out>
+  </testcase>
+  <testcase name="RecommendationFileWriterService_OneUserMultiRecommendations_SuccessfulWrite" classname="Services.RecommendationFileWriterServiceTest" time="0.006">
+    <system-out><![CDATA[Successfully wrote to the file.
+]]></system-out>
+  </testcase>
+  <testcase name="RecommendationFileWriterService_NoFilenameSpecified_Exception" classname="Services.RecommendationFileWriterServiceTest" time="0.005"/>
 </testsuite>

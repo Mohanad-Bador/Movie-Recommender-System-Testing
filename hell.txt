@@ -1,6 +1,0 @@
-user1, 1
-The Shawshank Redemption, The Godfather, The Dark Knight, The Shawshank Redemption
-user1, 1
-The Shawshank Redemption, The Godfather, The Dark Knight, The Shawshank Redemption
-user1, 1
-The Shawshank Redemption, The Godfather, The Dark Knight, The Shawshank Redemption

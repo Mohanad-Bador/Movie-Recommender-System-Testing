@@ -27,6 +27,7 @@ public class RecommenderService implements IRecommender {
         }
 
         Set<String> userMovies = user.getfavoriteMoviesSet();
+        
         // !1.Generate Favourite Genres
         Set<String> favouriteGenres = new HashSet<>();
         for (String movieIDs : userMovies){
