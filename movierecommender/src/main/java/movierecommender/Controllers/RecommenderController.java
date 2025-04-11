@@ -35,11 +35,6 @@ public class RecommenderController {
         HashMap<String,User> users = userService.parseUsers("./Assets/users.txt"); 
         HashMap<String,Movie> movies = movieService.parseMovies("./Assets/movies.txt"); 
         
-        /* users.forEach((id,user)->System.out.println(user));
-        
-        System.out.println("-------------------------------------");
-
-        movies.forEach((id,movie)->System.out.println(movie)); */
         //!3) For each user, generate the recommendations
         ArrayList<Recommendation> recommendations = new ArrayList<>();
         
@@ -50,6 +45,6 @@ public class RecommenderController {
         });
 
         //!4) Write the recommendations
-        //recommenderFileWriterService.writeRecommendations(recommendations); 
+        recommenderFileWriterService.writeRecommendations(recommendations); 
     }
 }
