@@ -1,0 +1,16 @@
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Contracts\IMovieFileParser.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Contracts\IRecommendationFileWriter.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Contracts\IRecommender.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Contracts\IUserFileParser.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Controllers\RecommenderController.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Entities\Movie.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Entities\Recommendation.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Entities\User.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Errors\AppError.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Main.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Mock\MovieFileParserMock.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Mock\UserFileParserMock.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Services\MovieFilerParserService.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Services\RecommendationFileWriterService.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Services\RecommenderService.java
+C:\Users\Mohanad\Documents\GitHub\Movie-recommender-Testing-Project\movierecommender\src\main\java\movierecommender\Services\UserFileParserService.java
