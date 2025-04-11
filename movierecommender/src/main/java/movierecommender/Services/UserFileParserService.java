@@ -19,33 +19,31 @@ public class UserFileParserService implements IUserFileParser {
 
     @Override
     public HashMap<String, User> parseUsers(String filename) throws AppError {
-        // TODO Auto-generated method stub
-        // Update with your file's actual path
-        // Length of file
-        // read file
-        // read line by line
-        // Odd lines are names, id
-        // Even lines are generes of that movie
         HashMap<String, User> users = new HashMap<String, User>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(filename));
             for (int i = 0; i < lines.size(); i += 2) {
+                // !1) Extracing user's name and ID
                 String[] splitted = lines.get(i).split(",");
-                if (splitted.length <= 1) {
+                if (splitted.length <= 1)
                     throw new AppError("There were no commas");
-                }
                 String name = splitted[0];
+                String id = splitted[1].trim();
+
+                // !2) Validating name and ID
                 if (!UserValidator.isValidUserName(name))
                     throw new AppError("User Name \"" + name + "\" is wrong");
-                String id = splitted[1].trim();
                 if (!UserValidator.isValidUserID(id))
                     throw new AppError("User id letters \"" + id + "\" are wrong");
+
+                // !3) Constructing User object
                 String[] movieIDArray = lines.get(i + 1).split(",");
                 Set<String> IDs = new HashSet<>(Arrays.asList(movieIDArray));
                 User user = new User(id, name, IDs);
-                if (users.containsKey(user.getuserID())) {
+
+                if (users.containsKey(user.getuserID()))
                     throw new AppError("Duplicated User ID \"" + id + "\"");
-                }
+
                 users.put(id, user);
             }
         } catch (IOException e) {

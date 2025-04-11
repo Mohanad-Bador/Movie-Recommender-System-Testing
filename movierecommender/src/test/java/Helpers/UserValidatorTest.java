@@ -38,5 +38,36 @@ public class UserValidatorTest {
     public void isValidMovieName_NullableNameShouldReturnFalse() {
         assertFalse(UserValidator.isValidUserName(null));
     }
-    // *2)isValidUserID
+
+    // *2) isValidUserID
+    @Test
+    public void isValidUserID_NullableUserIDShouldReturnFalse() {
+        assertFalse(UserValidator.isValidUserID(null));
+    }
+
+    @Test
+    public void isValidUserID_IDLengthNot9ShouldReturnFalse() {
+        assertFalse(UserValidator.isValidUserID("1234"));
+        assertFalse(UserValidator.isValidUserID("12345678910"));
+    }
+
+    @Test
+    public void isValidUserID_FirstCharacterIsNotADigitShouldReturnFalse() {
+        assertFalse(UserValidator.isValidUserID("A12345678"));
+    }
+
+    @Test
+    public void isValidUserID_9CharactersWithNoCharactersShouldReturnTrue() {
+        assertTrue(UserValidator.isValidUserID("123456789"));
+    }
+
+    @Test
+    public void isValidUserID_LastCharacterIsADigitShouldReturnTrue() {
+        assertTrue(UserValidator.isValidUserID("12345678A"));
+    }
+
+    @Test
+    public void isValidUserID_AlphabetCharacterInTheMiddleShouldReturnFalse() {
+        assertFalse(UserValidator.isValidUserID("123A45678"));
+    }
 }

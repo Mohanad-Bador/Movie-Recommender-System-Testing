@@ -29,22 +29,29 @@ public class MovieFilerParserService implements IMovieFileParser {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filename));
             for (int i = 0; i < lines.size(); i += 2) {
+                // ! 1) Split to get movie name and ID
                 String[] splitted = lines.get(i).split(",");
-                if (splitted.length <= 1) {
+                if (splitted.length <= 1)
                     throw new AppError("There were no commas");
-                }
+
                 String name = splitted[0].trim();
+
+                // ! 2) Validate movie name and ids
                 if (!MovieValidator.isValidMovieName(name))
                     throw new AppError("Movie Title \"" + name + "\" is wrong");
+
                 String id = splitted[1].trim();
-                if (!MovieValidator.isValidMovieID(id))
+                if (!MovieValidator.isValidMovieID(id) || !MovieValidator.isUniqueIDNumbers(id, movies))
                     throw new AppError("Movie id letters \"" + id + "\" are wrong");
+
+                // ! 3) Construct Movie object
                 String[] generesArray = lines.get(i + 1).split(",");
                 Set<String> generes = new HashSet<>(Arrays.asList(generesArray));
                 Movie movie = new Movie(name, id, generes);
-                if (movies.containsKey(movie.getMovieID())) {
+
+                if (movies.containsKey(movie.getMovieID()))
                     throw new AppError("Duplicated Movie ID \"" + id + "\"");
-                }
+
                 movies.put(id, movie);
             }
         } catch (IOException e) {
