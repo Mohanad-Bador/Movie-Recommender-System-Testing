@@ -3,7 +3,17 @@ package movierecommender;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-import movierecommender.Controllers.RecommenderController;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+
+import movierecommender.Entities.Movie;
+import movierecommender.Entities.Recommendation;
+import movierecommender.Entities.User;
 import movierecommender.Errors.AppError;
 import movierecommender.Services.MovieFilerParserService;
 import movierecommender.Services.UserFileParserService;
