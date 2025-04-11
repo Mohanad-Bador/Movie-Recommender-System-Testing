@@ -52,9 +52,9 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie3 = new Movie("The Dark Knight", "333",
                                 new HashSet<String>(Arrays.asList("Sc-fi", "Adventure")));
 
-                HashMap<String, Movie> userMovies1 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie1);
-                userMovies1.put("2", movie2);
+                HashSet<String> userMovies1 = new HashSet<String>();
+                userMovies1.add("1");
+                userMovies1.add("2");
                 User user = new User("1", "user1", userMovies1);
 
                 ArrayList<Movie> recommendedMovies1 = new ArrayList<Movie>(Arrays.asList(movie3));
@@ -83,8 +83,8 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie3 = new Movie("The Dark Knight", "333",
                                 new HashSet<String>(Arrays.asList("Sc-fi", "Adventure")));
 
-                HashMap<String, Movie> userMovies1 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie1);
+                HashSet<String> userMovies1 = new HashSet<String>();
+                userMovies1.add("1");
                 User user = new User("1", "user1", userMovies1);
 
                 ArrayList<Movie> recommendedMovies1 = new ArrayList<Movie>(Arrays.asList(movie2, movie3));
@@ -110,9 +110,9 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie3 = new Movie("The Dark Knight", "333",
                                 new HashSet<String>(Arrays.asList("Sc-fi", "Adventure")));
 
-                HashMap<String, Movie> userMovies1 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie1);
-                userMovies1.put("2", movie2);
+                HashSet<String> userMovies1 = new HashSet<String>();
+                userMovies1.add("1");
+                userMovies1.add("2");
                 User user1 = new User("1", "user1", userMovies1);
 
                 ArrayList<Movie> recommendedMovies1 = new ArrayList<Movie>(Arrays.asList(movie3));
@@ -125,8 +125,8 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie6 = new Movie("Chernobyl: Abyss", "666",
                                 new HashSet<String>(Arrays.asList("apoclaypse")));
 
-                HashMap<String, Movie> userMovies2 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie4);
+                HashSet<String> userMovies2 = new HashSet<String>();
+                userMovies1.add("1");
                 User user2 = new User("2", "user2", userMovies2);
 
                 ArrayList<Movie> recommendedMovies2 = new ArrayList<Movie>(Arrays.asList(movie5, movie6));
@@ -166,9 +166,9 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie3 = new Movie("The Dark Knight", "333",
                                 new HashSet<String>(Arrays.asList("Sc-fi", "Adventure")));
 
-                HashMap<String, Movie> userMovies1 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie1);
-                userMovies1.put("2", movie2);
+                HashSet<String> userMovies1 = new HashSet<String>();
+                userMovies1.add("1");
+                userMovies1.add("2");
                 User user = new User("1", "user1", userMovies1);
 
                 ArrayList<Movie> recommendedMovies1 = new ArrayList<Movie>(Arrays.asList(movie3));
@@ -194,9 +194,9 @@ public class RecommendationFileWriterServiceTest {
                 Movie movie3 = new Movie("The Dark Knight", "333",
                                 new HashSet<String>(Arrays.asList("Sc-fi", "Adventure")));
 
-                HashMap<String, Movie> userMovies1 = new HashMap<String, Movie>();
-                userMovies1.put("1", movie1);
-                userMovies1.put("2", movie2);
+                HashSet<String> userMovies1 = new HashSet<String>();
+                userMovies1.add("1");
+                userMovies1.add("2");
                 User user = new User("1", "user1", userMovies1);
 
                 ArrayList<Movie> recommendedMovies1 = new ArrayList<Movie>(Arrays.asList(movie3));

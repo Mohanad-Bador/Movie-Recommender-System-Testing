@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import movierecommender.Controllers.RecommenderController;
 import movierecommender.Entities.Movie;
 import movierecommender.Entities.Recommendation;
 import movierecommender.Entities.User;
