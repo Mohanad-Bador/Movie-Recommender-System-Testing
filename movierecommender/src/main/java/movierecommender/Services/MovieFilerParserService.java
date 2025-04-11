@@ -12,6 +12,7 @@ import java.util.Set;
 import movierecommender.Contracts.IMovieFileParser;
 import movierecommender.Entities.Movie;
 import movierecommender.Errors.AppError;
+import movierecommender.Helpers.MovieValidator;
 
 public class MovieFilerParserService implements IMovieFileParser {
 
@@ -33,10 +34,10 @@ public class MovieFilerParserService implements IMovieFileParser {
                     throw new AppError("There were no commas");
                 }
                 String name = splitted[0].trim();
-                if (!isValidMovieName(name))
+                if (!MovieValidator.isValidMovieName(name))
                     throw new AppError("Movie Title \"" + name + "\" is wrong");
                 String id = splitted[1].trim();
-                if (!isValidMovieID(id))
+                if (!MovieValidator.isValidMovieID(id))
                     throw new AppError("Movie id letters \"" + id + "\" are wrong");
                 String[] generesArray = lines.get(i + 1).split(",");
                 Set<String> generes = new HashSet<>(Arrays.asList(generesArray));
@@ -49,33 +50,7 @@ public class MovieFilerParserService implements IMovieFileParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'parseMovies'");
         return movies;
     }
 
-    public static boolean isValidMovieName(String movieName) {
-        String[] movieNameList = movieName.split(" ");
-        for (String name : movieNameList)
-            if (Character.isLowerCase(name.charAt(0)))
-                return false;
-        return true;
-    }
-
-    public static boolean isValidMovieID(String id) {
-        // capital charcters
-        // T3TR3 & 3 int
-        // Unique numbers????
-        int numSize = 3;
-        for (char c : id.toCharArray()) {
-            if (Character.isLowerCase(c))
-                return false;
-            if (Character.isDigit(c)) {
-                numSize -= 1;
-            }
-            if (numSize < 0)
-                return false;
-        }
-        return true;
-    }
 }

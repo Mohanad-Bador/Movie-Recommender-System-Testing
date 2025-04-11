@@ -13,6 +13,7 @@ import movierecommender.Contracts.IUserFileParser;
 import movierecommender.Entities.Movie;
 import movierecommender.Entities.User;
 import movierecommender.Errors.AppError;
+import movierecommender.Helpers.UserValidator;
 
 public class UserFileParserService implements IUserFileParser {
 
@@ -34,10 +35,10 @@ public class UserFileParserService implements IUserFileParser {
                     throw new AppError("There were no commas");
                 }
                 String name = splitted[0];
-                if (!isValidUserName(name))
+                if (!UserValidator.isValidUserName(name))
                     throw new AppError("User Name \"" + name + "\" is wrong");
                 String id = splitted[1].trim();
-                if (!isValidUserID(id))
+                if (!UserValidator.isValidUserID(id))
                     throw new AppError("User id letters \"" + id + "\" are wrong");
                 String[] movieIDArray = lines.get(i + 1).split(",");
                 Set<String> IDs = new HashSet<>(Arrays.asList(movieIDArray));
@@ -55,36 +56,4 @@ public class UserFileParserService implements IUserFileParser {
         return users;
     }
 
-    boolean isValidUserName(String name) {
-        boolean whitespaceExists = false;
-        if (name.charAt(0) == ' ') {
-            return false;
-        }
-        for (char c : name.toCharArray()) {
-            if (!Character.isAlphabetic(c) && c != ' ') {
-                return false;
-            }
-            if (c == ' ') {
-                whitespaceExists = true;
-            }
-
-        }
-        if (!whitespaceExists) {
-            return false;
-        }
-
-        return true;
-    }
-
-    boolean isValidUserID(String id) {
-        // Last alpahbet shit figure out later
-        if (id.length() > 9) {
-            return false;
-        }
-        if (!Character.isDigit(id.charAt(0))) {
-            return false;
-        }
-        return true;
-
-    }
 }

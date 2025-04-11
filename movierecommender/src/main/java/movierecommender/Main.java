@@ -17,9 +17,6 @@ public class Main {
         testUser.parseUsers("Assets/users.txt").forEach((key, value) -> {
             System.out.println(value.toString() + "\n");
         });
-
-        // String[] s = "asdkjsadj, asd23 232 ksdh".split(",");
-        // System.out.println((Arrays.toString(s))[0]);
         RecommenderController controller = new RecommenderController();
         // ! Initiate the program
         controller.recommend();
