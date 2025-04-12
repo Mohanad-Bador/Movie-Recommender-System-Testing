@@ -18,13 +18,6 @@ public class MovieFilerParserService implements IMovieFileParser {
 
     @Override
     public HashMap<String, Movie> parseMovies(String filename) throws AppError {
-        // TODO Auto-generated method stub
-        // Update with your file's actual path
-        // Length of file
-        // read file
-        // read line by line
-        // Odd lines are names, id
-        // Even lines are generes of that movie
         HashMap<String, Movie> movies = new HashMap<String, Movie>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(filename));
