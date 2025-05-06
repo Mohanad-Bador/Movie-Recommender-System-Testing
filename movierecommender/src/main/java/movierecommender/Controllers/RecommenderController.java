@@ -21,19 +21,22 @@ import movierecommender.Services.UserFileParserService;
 
 public class RecommenderController {
     public void recommend() throws AppError, IOException{
+        recommend("hell.txt","./Assets/users.txt" , "./Assets/movies.txt");
+    }
+    public void recommend(String outputFile, String userFile, String movieFile) throws AppError, IOException{
         //!1) Initialize the services
         IMovieFileParser movieService = new MovieFilerParserService();
         IUserFileParser userService = new UserFileParserService();
         IRecommender recommenderService = new RecommenderService();
         
-        File file = new File("hell.txt");
+        File file = new File(outputFile);
         FileWriter fileWriter = new FileWriter(file);
 
         IRecommendationFileWriter recommenderFileWriterService = new RecommendationFileWriterService(file,fileWriter);
 
         //!2) Initialize our repositories (The User HashMap and the Movie HashMap)
-        HashMap<String,User> users = userService.parseUsers("./Assets/users.txt"); 
-        HashMap<String,Movie> movies = movieService.parseMovies("./Assets/movies.txt"); 
+        HashMap<String,User> users = userService.parseUsers(userFile); 
+        HashMap<String,Movie> movies = movieService.parseMovies(movieFile); 
         
         //!3) For each user, generate the recommendations
         ArrayList<Recommendation> recommendations = new ArrayList<>();
