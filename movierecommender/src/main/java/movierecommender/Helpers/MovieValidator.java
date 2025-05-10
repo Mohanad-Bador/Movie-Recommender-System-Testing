@@ -1,6 +1,5 @@
 package movierecommender.Helpers;
 
-import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Map;
 import movierecommender.Entities.Movie;
