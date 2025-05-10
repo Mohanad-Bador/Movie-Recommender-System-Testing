@@ -207,4 +207,132 @@ public class RecommendationFileWriterServiceTest {
                                 () -> service.writeRecommendations(recommendations));
                 assertTrue(error.getMessage().contains("Error writing recommendations to file"));
         }
+        
+        // Branch Coverage Tests
+        @Test
+        public void BranchCoverage_EmptyRecommendations_ThrowsException() {
+        // Arrange
+        ArrayList<Recommendation> emptyRecommendations = new ArrayList<>();
+        
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> service.writeRecommendations(emptyRecommendations));
+        assertEquals("No Recommendations Available", exception.getMessage());
+        }
+
+        @Test
+        public void BranchCoverage_EmptyFilename_ThrowsException() {
+            // Arrange
+            when(mockFile.getName()).thenReturn("");
+            
+            User user = new User("1", "testUser", new HashSet<>());
+            Movie movie = new Movie("Test Movie", "123", new HashSet<>());
+            ArrayList<Movie> movies = new ArrayList<>(Arrays.asList(movie));
+            ArrayList<Recommendation> recommendations = new ArrayList<>(
+                    Arrays.asList(new Recommendation(user, movies)));
+            
+            // Act & Assert
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                    () -> service.writeRecommendations(recommendations));
+            assertEquals("No Filename Specified", exception.getMessage());
+        }
+        
+        @Test
+        public void BranchCoverage_ValidInput_WriteThrowsIOException() throws IOException {
+        // Arrange
+        when(mockFile.getName()).thenReturn("test.txt");
+        doThrow(new IOException("Test exception")).when(mockFileWriter).write(anyString());
+        
+        User user = new User("1", "testUser", new HashSet<>());
+        Movie movie = new Movie("The Shawshank Redemption", "123", new HashSet<>());
+        ArrayList<Movie> movies = new ArrayList<>(Arrays.asList(movie));
+        ArrayList<Recommendation> recommendations = new ArrayList<>(
+                Arrays.asList(new Recommendation(user, movies)));
+        
+        // Act & Assert
+        AppError error = assertThrows(AppError.class,
+                () -> service.writeRecommendations(recommendations));
+        assertTrue(error.getMessage().contains("Error writing recommendations to file"));
+        }
+
+        @Test
+        public void BranchCoverage_EmptyMoviesList_WritesOnlyUserInfo() throws IOException, AppError {
+        // Arrange
+        when(mockFile.getName()).thenReturn("test.txt");
+        
+        User user = new User("1", "testUser", new HashSet<>());
+        ArrayList<Movie> emptyMovies = new ArrayList<>();
+        ArrayList<Recommendation> recommendations = new ArrayList<>(
+                Arrays.asList(new Recommendation(user, emptyMovies)));
+        
+        // Act
+        service.writeRecommendations(recommendations);
+        
+        // Assert
+        verify(mockFileWriter).write(eq("testUser, 1\n"));
+        verify(mockFileWriter).close();
+        }
+
+        @Test
+        public void BranchCoverage_SingleMovie_WritesUserAndMovie() throws IOException, AppError {
+        // Arrange
+        when(mockFile.getName()).thenReturn("test.txt");
+        
+        User user = new User("1", "testUser", new HashSet<>());
+        Movie movie = new Movie("The Dark Knight", "333", new HashSet<>());
+        ArrayList<Movie> singleMovie = new ArrayList<>(Arrays.asList(movie));
+        ArrayList<Recommendation> recommendations = new ArrayList<>(
+                Arrays.asList(new Recommendation(user, singleMovie)));
+        
+        // Act
+        service.writeRecommendations(recommendations);
+        
+        // Assert
+        verify(mockFileWriter).write(eq("testUser, 1\nThe Dark Knight\n"));
+        verify(mockFileWriter).close();
+        }
+
+        @Test
+        public void BranchCoverage_MultipleMovies_WritesUserAndAllMovies() throws IOException, AppError {
+        // Arrange
+        when(mockFile.getName()).thenReturn("test.txt");
+        
+        User user = new User("1", "testUser", new HashSet<>());
+        Movie movie1 = new Movie("The Green Mile", "444", new HashSet<>());
+        Movie movie2 = new Movie("Inception", "555", new HashSet<>());
+        ArrayList<Movie> multipleMovies = new ArrayList<>(Arrays.asList(movie1, movie2));
+        ArrayList<Recommendation> recommendations = new ArrayList<>(
+                Arrays.asList(new Recommendation(user, multipleMovies)));
+        
+        // Act
+        service.writeRecommendations(recommendations);
+        
+        // Assert - first movie with comma, last movie with newline
+        verify(mockFileWriter).write(eq("testUser, 1\nThe Green Mile, Inception\n"));
+        verify(mockFileWriter).close();
+        }
+
+        @Test
+        public void BranchCoverage_MultipleUsers_WritesAllUsersAndMovies() throws IOException, AppError {
+        // Arrange
+        when(mockFile.getName()).thenReturn("test.txt");
+        
+        User user1 = new User("1", "user1", new HashSet<>());
+        User user2 = new User("2", "user2", new HashSet<>());
+        
+        Movie movie1 = new Movie("Pulp Fiction", "666", new HashSet<>());
+        Movie movie2 = new Movie("Fight Club", "777", new HashSet<>());
+        
+        ArrayList<Recommendation> recommendations = new ArrayList<>(Arrays.asList(
+                new Recommendation(user1, new ArrayList<>(Arrays.asList(movie1))),
+                new Recommendation(user2, new ArrayList<>(Arrays.asList(movie2)))
+        ));
+        
+        // Act
+        service.writeRecommendations(recommendations);
+        
+        // Assert
+        verify(mockFileWriter).write(eq("user1, 1\nPulp Fiction\nuser2, 2\nFight Club\n"));
+        verify(mockFileWriter).close();
+        }
 }

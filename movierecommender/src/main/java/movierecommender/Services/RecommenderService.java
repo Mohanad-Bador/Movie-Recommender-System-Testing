@@ -41,7 +41,6 @@ public class RecommenderService implements IRecommender {
             movieGenres.retainAll(favouriteGenres);
             if(!movieGenres.isEmpty() && !userMovies.contains(movie.getMovieID()))
                 recommendations.getRecommendedMovies().add(movie);
-            
         }
 
         // Case 2: No Available Recommendations

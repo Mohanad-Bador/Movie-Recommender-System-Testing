@@ -1,6 +1,7 @@
 package Services;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -166,4 +167,85 @@ public class RecommenderServiceTest {
             assertEquals(movies.size() - userMoviesCount, recommenderService.generateRecommendations(user, movies).getRecommendedMovies().size());
             }
         }
+
+    // WHITE BOX TESTING
+    // Condition Coverage
+
+    @Test
+    public void testConditionCoverage_EmptyMovieGenres_NotRecommended() {
+        // Arrange
+        HashMap<String, Movie> movies = new HashMap<>();
+        HashSet<String> actionGenre = new HashSet<>();
+
+        actionGenre.add("Action");
+        Movie movie1 = new Movie("Action Movie", "1", actionGenre);
+
+        HashSet<String> horrorGenre = new HashSet<>();
+        horrorGenre.add("Horror");
+        Movie movie2 = new Movie("Horror Movie", "2", horrorGenre);
+        
+        movies.put("1", movie1);
+        movies.put("2", movie2);
+        
+        User user = new User("testUser", "testUserEmail", new HashSet<>());
+        user.getfavoriteMoviesSet().add("1");
+        
+        RecommenderService recommenderService = new RecommenderService();
+        
+        // Act
+        Recommendation recommendations = recommenderService.generateRecommendations(user, movies);
+        
+        // Assert
+        assertEquals(0, recommendations.getRecommendedMovies().stream()
+                .filter(m -> m.getMovieID().equals("2")).count());
     }
+
+    @Test
+    public void testConditionCoverage_MovieAlreadyInFavorites_NoRecommendations() {
+        // Arrange
+        HashMap<String, Movie> movies = new HashMap<>();
+        HashSet<String> actionGenre = new HashSet<>();
+
+        actionGenre.add("Action");
+        Movie movie1 = new Movie("Action Movie", "1", actionGenre);
+        movies.put("1", movie1);
+        
+        User user = new User("testUser", "testUserEmail", new HashSet<>());
+        user.getfavoriteMoviesSet().add("1");
+        
+        RecommenderService recommenderService = new RecommenderService();
+        
+        // Act
+        Recommendation recommendations = recommenderService.generateRecommendations(user, movies);
+        
+        // Assert
+        assertEquals("No Recommendations", recommendations.getRecommendedMovies().get(0).getMovieName());
+    }
+
+    @Test
+    public void testConditionCoverage_MatchingGenreNotInFavorites_Recommended() {
+        // Arrange
+        HashMap<String, Movie> movies = new HashMap<>();
+        HashSet<String> actionGenre = new HashSet<>();
+
+        actionGenre.add("Action");
+        
+        Movie movie1 = new Movie("Action Movie 1", "1", actionGenre);
+        Movie movie2 = new Movie("Action Movie 2", "2", actionGenre);
+        
+        movies.put("1", movie1);
+        movies.put("2", movie2);
+        
+        User user = new User("testUser", "testUserEmail", new HashSet<>());
+        user.getfavoriteMoviesSet().add("1");
+        
+        RecommenderService recommenderService = new RecommenderService();
+        
+        // Act
+        Recommendation recommendations = recommenderService.generateRecommendations(user, movies);
+        
+        // Assert
+        assertEquals(1, recommendations.getRecommendedMovies().size());
+        assertEquals("2", recommendations.getRecommendedMovies().get(0).getMovieID());
+    }
+}

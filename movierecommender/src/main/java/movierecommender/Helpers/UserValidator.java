@@ -3,25 +3,19 @@ package movierecommender.Helpers;
 public class UserValidator extends BaseValidator {
 
     public static boolean isValidUserName(String name) {
-        if (name == null)
+        if (name == null || name.isEmpty())
             return false;
         boolean whitespaceExists = false;
         if (name.charAt(0) == ' ') {
-            return false;
-        }
+            return false;}
         for (char c : name.toCharArray()) {
             if (!Character.isAlphabetic(c) && c != ' ') {
-                return false;
-            }
+                return false;}
             if (c == ' ') {
-                whitespaceExists = true;
-            }
-
+                whitespaceExists = true;}
         }
         if (!whitespaceExists) {
-            return false;
-        }
-
+            return false;}
         return true;
     }
 

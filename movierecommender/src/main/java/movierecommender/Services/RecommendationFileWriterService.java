@@ -21,8 +21,7 @@ public class RecommendationFileWriterService implements IRecommendationFileWrite
 
     @Override
     public void writeRecommendations(ArrayList<Recommendation> recommendations)
-            throws AppError {
-        // TODO Auto-generated method stub
+    throws AppError {
         if (recommendations.isEmpty()) {
             throw new IllegalArgumentException("No Recommendations Available");
         }

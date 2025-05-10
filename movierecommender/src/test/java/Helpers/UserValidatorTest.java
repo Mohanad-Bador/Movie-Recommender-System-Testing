@@ -2,7 +2,6 @@ package Helpers;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import movierecommender.Helpers.UserValidator;
@@ -69,5 +68,37 @@ public class UserValidatorTest {
     @Test
     public void isValidUserID_AlphabetCharacterInTheMiddleShouldReturnFalse() {
         assertFalse(UserValidator.isValidUserID("123A45678"));
+    }
+
+    // Path Coverage
+    @Test
+    public void testPath_NullOrEmpty() {
+        // Path: 2→3
+        assertFalse(UserValidator.isValidUserName(null));
+        assertFalse(UserValidator.isValidUserName(""));
+    }
+
+    @Test
+    public void testPath_StartsWithSpace() {
+        // Path: 2→4→5→6
+        assertFalse(UserValidator.isValidUserName(" Hassan"));
+    }
+
+    @Test
+    public void testPath_NonAlphabetic() {
+        // Path: 2→4→5→7→8→9
+        assertFalse(UserValidator.isValidUserName("Hassan123"));
+    }
+
+    @Test
+    public void testPath_NoSpaces() {
+        // Path: 2→4→5→7→8→10→12→13→14
+        assertFalse(UserValidator.isValidUserName("Hassan"));
+    }
+
+    @Test
+    public void testPath_Valid() {
+        // Path: 2→4→5→7→8→10→11→12→13→15→16
+        assertTrue(UserValidator.isValidUserName("Hassan Ali"));
     }
 }
