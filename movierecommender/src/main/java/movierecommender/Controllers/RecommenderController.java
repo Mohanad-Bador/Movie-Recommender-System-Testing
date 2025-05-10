@@ -14,7 +14,7 @@ import movierecommender.Entities.Movie;
 import movierecommender.Entities.Recommendation;
 import movierecommender.Entities.User;
 import movierecommender.Errors.AppError;
-import movierecommender.Services.MovieFilerParserService;
+import movierecommender.Services.MovieFileParserService;
 import movierecommender.Services.RecommendationFileWriterService;
 import movierecommender.Services.RecommenderService;
 import movierecommender.Services.UserFileParserService;
@@ -25,7 +25,7 @@ public class RecommenderController {
     }
     public void recommend(String outputFile, String userFile, String movieFile) throws AppError, IOException{
         //!1) Initialize the services
-        IMovieFileParser movieService = new MovieFilerParserService();
+        IMovieFileParser movieService = new MovieFileParserService();
         IUserFileParser userService = new UserFileParserService();
         IRecommender recommenderService = new RecommenderService();
         
